@@ -11,6 +11,11 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+if (UNIX)
+    find_package(Threads REQUIRED)
+endif (UNIX)
+
+
 if(NOT DEFINED HEADERS)
     file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 endif()
@@ -25,4 +30,9 @@ source_group("Source Files" FILES ${SOURCES})
 add_executable(${PROJECT}
     ${HEADERS}
     ${SOURCES}
-)
+    )
+
+if (UNIX)
+    target_link_libraries (${PROJECT} ${CMAKE_THREAD_LIBS_INIT})
+endif (UNIX)
+
