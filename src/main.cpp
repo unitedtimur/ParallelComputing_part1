@@ -25,13 +25,13 @@ int main()
 
     auto begin = std::chrono::steady_clock::now();
 
-    for (size_t i = 0; i < threadNumbers; ++i) {
+    for (size_t i = 0; i < threadNumbers; ++i)
         threads.push_back(std::thread(&ArrayInitializer::execute<size_t>, std::ref(array), i,
                                       quotient, remainder, threadNumbers));
 
+    for (size_t i = 0; i < threadNumbers; ++i)
         if (threads.at(i).joinable())
             threads.at(i).join();
-    }
 
     auto end = std::chrono::steady_clock::now();
 
@@ -39,7 +39,7 @@ int main()
         std::cout << '[' << it  << "] " << std::flush;
     }
 
-     auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
+    auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
 
     std::cout << "\nThe time: " << elapsed_ms.count() << std::endl;
 

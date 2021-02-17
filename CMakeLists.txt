@@ -15,7 +15,6 @@ if (UNIX)
     find_package(Threads REQUIRED)
 endif (UNIX)
 
-
 if(NOT DEFINED HEADERS)
     file(GLOB HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 endif()
